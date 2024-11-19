@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0; /* Padding added to top and bottom */
+    background-color: #f7f9fc;
+}
+
+.signup-container {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: #555;
+}
+
+input[type="text"], 
+input[type="password"], 
+select, 
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.flash-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropdown-toggle {
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    z-index: 1;
+    padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.dropdown-content label {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.dropdown-content input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.show {
+    display: block;
+}
+
+@media (max-width: 500px) {
+    .signup-container {
+        padding: 15px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    input[type="text"], 
+    input[type="password"], 
+    select, 
+    button, 
+    .dropdown-toggle {
+        font-size: 13px;
+        padding: 8px;
+    }
+    .dropdown-content label {
+        font-size: 13px;
+    }
+}
+
+
+/* Close button styling */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #e74c3c;
+}

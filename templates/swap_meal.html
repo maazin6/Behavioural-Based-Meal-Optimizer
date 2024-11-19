@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap {{ meal_type.capitalize() }} Meal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/swap_meals.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/menu">Menu</a></li>
+            <li><a href="/mealdatabase">Meal Database</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+        <button class="logout-btn" onclick="location.href='/'">Logout</button>
+    </nav>
+
+    <h1>Swap {{ meal_type.capitalize() }} Meal</h1>
+
+    <div class="meal-grid">
+        {% for meal in meals %}
+        <div class="meal-item">
+            <img src="{{ meal[2] }}" alt="{{ meal[1] }}" class="meal-img">
+            <h4>{{ meal[1] }}</h4>
+            <button class="details-btn" onclick="location.href='/meal_details/{{ meal[0] }}';" type="button">View Details</button>
+            
+            <!-- Form to select and swap the meal -->
+            <form method="POST" action="/swap/{{ meal_type }}">
+                <input type="hidden" name="meal_id" value="{{ meal[0] }}">
+                <button type="submit" class="swap-btn">Select This Meal</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

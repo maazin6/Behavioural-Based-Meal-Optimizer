@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood and Stress Level</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/mood.css') }}">
+</head>
+<body>
+    <div class="mood-container">
+        <h2>How Are You Feeling Today?</h2>
+
+        <form id="moodForm" action="/submit_mood" method="POST">
+            <!-- Mood selection -->
+            <label for="mood">Select Your Mood:</label>
+            <select name="mood" id="mood" required>
+                <option value="" disabled selected>Select a mood</option>
+                <option value="neutral">Neutral</option>
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="anxious">Anxious</option>
+                <option value="angry">Angry</option>
+                <option value="tired">Tired</option>
+            </select><br><br>
+
+            <!-- Stress level input -->
+            <label for="stress_level">Enter Your Stress Level (0-5):</label>
+            <input type="number" id="stress_level" name="stress_level" min="0" max="5" required><br><br>
+
+            <!-- Submit button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

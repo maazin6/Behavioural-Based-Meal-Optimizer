@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Meal Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/menu.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/menu">Menu</a></li>
+            <li><a href="/mealdatabase">Meal Database</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+        <button class="logout-btn" onclick="location.href='/'">Logout</button>
+    </nav>
+
+    <h1>Weekly Meal Planner</h1>
+
+    <div class="meal-grid">
+        <!-- Set a specific day, e.g., Monday -->
+        {% set day = "monday" %}
+        {% set meals = menu.get(day, {}) %}
+
+        <div class="day-row">
+            <!-- Breakfast -->
+            <div class="meal-item">
+                {% if meals.breakfast %}
+                    <img src="{{ meals.breakfast.image }}" alt="{{ meals.breakfast.name }}" class="meal-img">
+                    <h4>{{ meals.breakfast.name }}</h4>
+                    <button class="details-btn" onclick="location.href='/meal_details/{{ meals.breakfast.id }}';">View Details</button>
+                    <button class="swap-btn" onclick="location.href='/swap_meal/breakfast/{{ day }}';">Swap Meal</button>
+                {% else %}
+                    <p>No breakfast available</p>
+                {% endif %}
+            </div>
+
+            <!-- Lunch -->
+            <div class="meal-item">
+                {% if meals.lunch %}
+                    <img src="{{ meals.lunch.image }}" alt="{{ meals.lunch.name }}" class="meal-img">
+                    <h4>{{ meals.lunch.name }}</h4>
+                    <button class="details-btn" onclick="location.href='/meal_details/{{ meals.lunch.id }}';">View Details</button>
+                    <button class="swap-btn" onclick="location.href='/swap_meal/lunch/{{ day }}';">Swap Meal</button>
+                {% else %}
+                    <p>No lunch available</p>
+                {% endif %}
+            </div>
+
+            <!-- Dinner -->
+            <div class="meal-item">
+                {% if meals.dinner %}
+                    <img src="{{ meals.dinner.image }}" alt="{{ meals.dinner.name }}" class="meal-img">
+                    <h4>{{ meals.dinner.name }}</h4>
+                    <button class="details-btn" onclick="location.href='/meal_details/{{ meals.dinner.id }}';">View Details</button>
+                    <button class="swap-btn" onclick="location.href='/swap_meal/dinner/{{ day }}';">Swap Meal</button>
+                {% else %}
+                    <p>No dinner available</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

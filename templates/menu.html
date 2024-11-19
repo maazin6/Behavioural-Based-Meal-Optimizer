@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Meal Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/menu.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/menu">Menu</a></li>
+            <li><a href="{{ url_for('mealdatabase') }}">Meal Database</a></li>
+            <li><a href="{{ url_for('profile') }}">Profile</a></li>
+        </ul>
+        <button class="logout-btn" onclick="location.href='/'">Logout</button>
+    </nav>
+
+
+    <h1 class="page-title">Weekly Meal Planner</h1>
+
+    <!-- Meal Containers -->
+    <div class="meal-grid">
+        <!-- Breakfast Container -->
+        <div class="meal-box">
+            <h2>Breakfast</h2>
+            {% if breakfast_image %}
+                <img src="{{ breakfast_image }}" alt="Breakfast Image" class="meal-img">
+            {% endif %}
+            <p class="meal-name">{{ breakfast_name }}</p>
+            <button onclick="location.href='/meal_details/{{ breakfast_id }}'" class="view-btn">View Details</button>
+            <button onclick="location.href='/swap/breakfast'" class="swap-btn">Swap Meal</button>
+        </div>
+        
+        <!-- Lunch Container -->
+        <div class="meal-box">
+            <h2>Lunch</h2>
+            {% if lunch_image %}
+                <img src="{{ lunch_image }}" alt="Lunch Image" class="meal-img">
+            {% endif %}
+            <p class="meal-name">{{ lunch_name }}</p>
+            <button onclick="location.href='/meal_details/{{ lunch_id }}'" class="view-btn">View Details</button>
+            <button onclick="location.href='/swap/lunch'" class="swap-btn">Swap Meal</button>
+        </div>
+        
+        <!-- Dinner Container -->
+        <div class="meal-box">
+            <h2>Dinner</h2>
+            {% if dinner_image %}
+                <img src="{{ dinner_image }}" alt="Dinner Image" class="meal-img">
+            {% endif %}
+            <p class="meal-name">{{ dinner_name }}</p>
+            <button onclick="location.href='/meal_details/{{ dinner_id }}'" class="view-btn">View Details</button>
+            <button onclick="location.href='/swap/dinner'" class="swap-btn">Swap Meal</button>
+        </div>
+    </div>
+
+</body>
+</html>

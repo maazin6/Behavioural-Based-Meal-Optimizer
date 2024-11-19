@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/signup.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <a href="/" class="close-btn">X</a>
+
+    <div class="signup-container">
+        <h2>Signup Form</h2>
+
+        <div id="flash-messages" class="flash-message"></div>
+
+        <form id="signupForm" method="POST" action="/submit_signup">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br><br>
+
+            <label for="retype_password">Retype Password:</label>
+            <input type="password" name="retype_password" id="retype_password" required><br><br>
+
+            <label for="age">Age:</label>
+            <select name="age" id="age">
+                <option value="under_13">Under 13</option>
+                <option value="13-18">13-18</option>
+                <option value="19-24">19-24</option>
+                <option value="25-30">25-30</option>
+                <option value="30+">30+</option>
+            </select><br><br>
+
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br><br>
+
+            <label for="region">Region:</label>
+            <select name="region" id="region">
+                <option value="northern india">Northern India</option>
+                <option value="southern india">Southern India</option>
+                <option value="eastern india">Eastern India</option>
+                <option value="western india">Western India</option>
+                <option value="north eastern india">North Eastern India</option>
+                <option value="central india">Central India</option>
+            </select><br><br>
+
+            <label for="mealType">Meal Type:</label>
+            <select name="meal_type" id="mealType" onchange="toggleMealOptions()">
+                <option value="" disabled selected>Select Meal Preference</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="non-vegetarian">Non-Vegetarian</option>
+            </select><br><br>
+
+            <!-- <div id="vegOptions" class="hidden">
+                <label><input type="checkbox" name="paneer" value="1"> Can you eat Paneer?</label><br>
+                <label><input type="checkbox" name="soy" value="1"> Can you eat Soy?</label><br>
+                <label><input type="checkbox" name="legumes_and_lentils" value="1"> Can you eat Legumes and Lentils?</label><br>
+                <label><input type="checkbox" name="leafy_greens" value="1"> Can you eat Leeafy Greens?</label><br>
+                <label><input type="checkbox" name="root_vegetables" value="1"> Can you eat Root Vegetables?</label><br>
+                <label><input type="checkbox" name="mushrooms" value="1"> Can you eat Mushrooms?</label><br>
+            </div>
+
+            <div id="nonVegOptions" class="hidden">
+                <label><input type="checkbox" name="mutton" value="1"> Can you eat Mutton?</label><br>
+                <label><input type="checkbox" name="chicken" value="1"> Can you eat Chicken?</label><br>
+                <label><input type="checkbox" name="beef" value="1"> Can you eat Beef?</label><br>
+                <label><input type="checkbox" name="fish" value="1"> Can you eat Fish?</label><br>
+                <label><input type="checkbox" name="prawns" value="1"> Can you eat Prawns?</label><br>
+                <label><input type="checkbox" name="eggs" value="1"> Can you eat Eggs?</label><br>
+            </div> -->
+
+            <label>Allergies:</label><br>
+            <div class="dropdown">
+                <button class="dropdown-toggle" type="button" onclick="toggleDropdown()">Select Allergies</button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <label><input type="checkbox" name="allergies" value="nuts"> Nuts</label>
+                    <label><input type="checkbox" name="allergies" value="dairy"> Dairy</label>
+                    <label><input type="checkbox" name="allergies" value="legumes"> Legumes and Lentils</label>
+                    <label><input type="checkbox" name="allergies" value="mutton"> Mutton</label>
+                    <label><input type="checkbox" name="allergies" value="chicken"> Chicken</label>
+                    <label><input type="checkbox" name="allergies" value="beef"> Beef</label>
+                    <label><input type="checkbox" name="allergies" value="fish"> Fish</label>
+                    <label><input type="checkbox" name="allergies" value="prawn"> Prawns</label>
+                    <label><input type="checkbox" name="allergies" value="eggs"> Eggs</label>
+                </div>
+            </div><br><br>
+
+            <button type="button" onclick="validateSignup()">Check Availability</button>
+            <button id="submitBtn" type="submit" style="display:none;">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleMealOptions() {
+            const mealType = document.getElementById("mealType").value;
+            document.getElementById("vegOptions").classList.add("hidden");
+            document.getElementById("nonVegOptions").classList.add("hidden");
+
+            if (mealType === "vegetarian") {
+                document.getElementById("vegOptions").classList.remove("hidden");
+            } else if (mealType === "non_vegetarian") {
+                document.getElementById("nonVegOptions").classList.remove("hidden");
+            }
+        }
+
+        function toggleDropdown() {
+            document.getElementById("dropdown-content").classList.toggle("show");
+        }
+
+        function validateSignup() {
+            const username = $('#username').val();
+            const password = $('#password').val();
+            const retypePassword = $('#retype_password').val();
+
+            $.post('/check_signup', { username, password, retype_password: retypePassword })
+                .done(function(data) {
+                    $('#flash-messages').html(`<p>${data.messages.join('<br>')}</p>`);
+                    if (data.success) {
+                        $('#submitBtn').show();
+                    }
+                })
+                .fail(function(xhr) {
+                    const errors = JSON.parse(xhr.responseText).messages;
+                    $('#flash-messages').html(`<p>${errors.join('<br>')}</p>`);
+                    $('#submitBtn').hide();
+                });
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-toggle')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+</html>

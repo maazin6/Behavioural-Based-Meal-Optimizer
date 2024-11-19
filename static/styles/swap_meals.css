@@ -1,0 +1,143 @@
+/* General Layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Soft background color */
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2em;
+    color: #333;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    margin: 0 15px;
+}
+
+.nav-list li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-btn {
+    background-color: #ff6347;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #ff4500;
+}
+
+/* Meal Grid Layout */
+.meal-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* Meal Item Styling */
+.meal-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 28%; /* Ensures three items per row */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.meal-item:hover {
+    transform: translateY(-5px); /* Adds a slight lift on hover */
+}
+
+/* Image Styling for Consistent Size */
+.meal-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    margin: 10px 0;
+    color: #555;
+    font-size: 1.1em;
+}
+
+/* Button Styling */
+button {
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.details-btn {
+    background-color: #008cba;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.details-btn:hover {
+    background-color: #005f5f;
+}
+
+.swap-btn {
+    background-color: #f4a261;
+    color: white;
+    margin-top: 10px;
+}
+
+.swap-btn:hover {
+    background-color: #e76f51;
+}
+
+/* Form Styling */
+form {
+    display: inline; /* Inline to align form with buttons */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .meal-item {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .meal-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

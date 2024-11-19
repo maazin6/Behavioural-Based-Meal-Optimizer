@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/mealgrid.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/menu">Menu</a></li>
+            <li><a href="/mealdatabase">Meal Database</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+        <button class="logout-btn" onclick="location.href='/'">Logout</button>
+    </nav>
+
+    <h1>Meal Database</h1>
+    <div class="meal-grid">
+        {% for meal in meals %}
+        <div class="meal-item">
+            <img src="{{ meal[1] }}" alt="{{ meal[0] }}" class="meal-img">
+            <h4>{{ meal[0] }}</h4>
+            <button class="details-btn" onclick="location.href='/meal_details/{{ meal[2] }}';">View Details</button>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

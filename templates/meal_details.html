@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ meal.name }} Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/meal_detailsstyles.css') }}">
+    <script>
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</head>
+<body>
+    <button class="close-btn" onclick="goBack()">X</button>
+    <div class="container">
+        <div class="meal-info">
+            <img src="{{ meal.image }}" alt="{{ meal.name }}" class="meal-img">
+            <h1>{{ meal.name }}</h1>
+        </div>
+
+        <div class="recipe-section">
+            <h2>Recipe</h2>
+            <h3>Ingredients</h3>
+            <ul style="list-style-type: disc; padding-left: 20px;">
+                {% for ingredient in meal.ingredients %}
+                    <li>{{ ingredient.strip() }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Instructions</h3>
+            <ol style="padding-left: 20px;">
+                {% for step in meal.instructions %}
+                    <li>{{ step.strip() }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="nutrition-section">
+            <h2>Nutritional Value</h2>
+            <table>
+                <tr><td>Calories</td><td>{{ meal.nutrition.calories }}  kcal</td></tr>
+
+                <tr><td>Protein</td><td>{{ meal.nutrition.protein }}  g</td></tr>
+
+                <tr><td>Fat</td><td>{{ meal.nutrition.fat }}   g</td></tr>
+
+                <tr><td>Carbohydrate</td><td>{{ meal.nutrition.carbohydrate }}   g</td></tr>
+
+                <tr><td>Fiber</td><td>{{ meal.nutrition.fiber }}    g</td></tr>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

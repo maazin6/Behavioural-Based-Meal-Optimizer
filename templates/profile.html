@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/profile.css') }}">
+    <style>
+        /* Styling for the multi-select dropdown */
+        .dropdown-select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            height: auto;
+        }
+        .profile-container .form-group {
+            margin-bottom: 20px;
+        }
+        .submit-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/menu">Menu</a></li>
+            <li><a href="/mealdatabase">Meal Database</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+        <button class="logout-btn" onclick="location.href='/'">Logout</button>
+    </nav>
+
+    <h1>Edit Profile</h1>
+
+    <div class="profile-container">
+        <!-- Update Password -->
+        <div class="form-group">
+            <h2>Update Password</h2>
+            <form method="POST" action="/update_password">
+                <label for="password">New Password:</label>
+                <input type="password" name="password" id="password" required>
+                <button type="submit" class="submit-btn">Update Password</button>
+            </form>
+        </div>
+
+        <!-- Update Age Group -->
+        <div class="form-group">
+            <h2>Update Age Group</h2>
+            <form method="POST" action="/update_age">
+                <label for="age">Age Group:</label>
+                <select name="age" id="age">
+                    <option value="under_13" {% if age == "under_13" %}selected{% endif %}>Under 13</option>
+                    <option value="13-18" {% if age == "13-18" %}selected{% endif %}>13-18</option>
+                    <option value="19-24" {% if age == "19-24" %}selected{% endif %}>19-24</option>
+                    <option value="25-30" {% if age == "25-30" %}selected{% endif %}>25-30</option>
+                    <option value="30+" {% if age == "30+" %}selected{% endif %}>30+</option>
+                </select>
+                <button type="submit" class="submit-btn">Update Age Group</button>
+            </form>
+        </div>
+
+        <!-- Update Gender -->
+        <div class="form-group">
+            <h2>Update Gender</h2>
+            <form method="POST" action="/update_gender">
+                <label for="gender">Gender:</label>
+                <select name="gender" id="gender">
+                    <option value="male" {% if gender == "male" %}selected{% endif %}>Male</option>
+                    <option value="female" {% if gender == "female" %}selected{% endif %}>Female</option>
+                    <option value="other" {% if gender == "other" %}selected{% endif %}>Other</option>
+                </select>
+                <button type="submit" class="submit-btn">Update Gender</button>
+            </form>
+        </div>
+
+        <!-- Update Region -->
+        <div class="form-group">
+            <h2>Update Region</h2>
+            <form method="POST" action="/update_region">
+                <label for="region">Region:</label>
+                <select name="region" id="region">
+                    <option value="northern india" {% if region == "northern india" %}selected{% endif %}>Northern India</option>
+                    <option value="southern india" {% if region == "southern india" %}selected{% endif %}>Southern India</option>
+                    <option value="eastern india" {% if region == "eastern india" %}selected{% endif %}>Eastern India</option>
+                    <option value="western india" {% if region == "western india" %}selected{% endif %}>Western India</option>
+                    <option value="north eastern india" {% if region == "north eastern india" %}selected{% endif %}>North Eastern India</option>
+                    <option value="central india" {% if region == "central india" %}selected{% endif %}>Central India</option>
+                </select>
+                <button type="submit" class="submit-btn">Update Region</button>
+            </form>
+        </div>
+
+        <!-- Update Meal Type -->
+        <div class="form-group">
+            <h2>Update Meal Type</h2>
+            <form method="POST" action="/update_meal_type">
+                <label for="mealType">Meal Type:</label>
+                <select name="meal_type" id="mealType">
+                    <option value="vegetarian" {% if meal_type == "vegetarian" %}selected{% endif %}>Vegetarian</option>
+                    <option value="non-vegetarian" {% if meal_type == "non-vegetarian" %}selected{% endif %}>Non-Vegetarian</option>
+                </select>
+                <button type="submit" class="submit-btn">Update Meal Type</button>
+            </form>
+        </div>
+
+        <!-- Update Allergies with Multi-select Dropdown -->
+        <div class="form-group">
+            <h2>Update Allergies</h2>
+            <form method="POST" action="/update_allergies">
+                <label>Allergies:</label>
+                <div class="dropdown">
+                    <div class="dropdown-content" id="dropdown-content">
+                        <label><input type="checkbox" name="allergies" value="nuts" {% if "nuts" in allergies %}checked{% endif %}> Nuts</label>
+                        <label><input type="checkbox" name="allergies" value="legumes_and_lentils" {% if "legumes_and_lentils" in allergies %}checked{% endif %}> Legumes and Lentils</label>
+                        <label><input type="checkbox" name="allergies" value="dairy" {% if "dairy" in allergies %}checked{% endif %}> Dairy</label>
+                        <label><input type="checkbox" name="allergies" value="mutton" {% if "mutton" in allergies %}checked{% endif %}> Mutton</label>
+                        <label><input type="checkbox" name="allergies" value="chicken" {% if "chicken" in allergies %}checked{% endif %}> Chicken</label>
+                        <label><input type="checkbox" name="allergies" value="beef" {% if "beef" in allergies %}checked{% endif %}> Beef</label>
+                        <label><input type="checkbox" name="allergies" value="fish" {% if "fish" in allergies %}checked{% endif %}> Fish</label>
+                        <label><input type="checkbox" name="allergies" value="prawns" {% if "prawns" in allergies %}checked{% endif %}> Prawns</label>
+                        <label><input type="checkbox" name="allergies" value="eggs" {% if "eggs" in allergies %}checked{% endif %}> Eggs</label>
+                        <label><input type="checkbox" name="allergies" value="none" {% if "none" in allergies %}checked{% endif %}> None</label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Update Allergies</button>
+            </form>
+        </div>
+
+
+    </div>
+
+    <script>
+        // Toggle the dropdown visibility
+        function toggleDropdown() {
+            document.getElementById("dropdown-content").classList.toggle("show");
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+</html>

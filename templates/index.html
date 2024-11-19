@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Finder</title>
+    <link rel="stylesheet" href="../static/styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+        .flash-message {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="img"></div>
+            <div class="content-container">
+                <div class="close-btn-container">
+                    <a href="../templates/index.html" class="close-btn">&times;</a>
+                </div>
+                
+                <h1 class="title">Behaviour Based Meal Optimizer</h1>
+                
+                
+                
+                <p class="info">
+                    If you can't decide what to eat.<br>
+                    If you want to start eating healthy.<br>
+                    If you find comfort in food cooked at home.<br>
+                    This is the right place to be.
+                </p>
+                
+                <form id="signupForm" method="POST" action="/submit_signup">
+                  <!-- Other form fields go here, such as username, password, etc. -->
+              
+                  <button class="main-btn" type="submit">Sign Up</button>
+              </form>
+              
+                <button class="main-btn" onclick="window.location.href='/login';">Login</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

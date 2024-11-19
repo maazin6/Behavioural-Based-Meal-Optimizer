@@ -1,0 +1,141 @@
+/* Basic reset */
+body, h1, form, label, input, button, p, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container styling */
+.login-container {
+    position: relative; /* Needed for absolute positioning of the close button */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Close button container */
+.close-btn-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.close-btn {
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #ff0000; /* Change color on hover */
+}
+
+/* Heading styling */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Heading styling */
+h2 {
+    text-align: center;
+    color: red;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label styling */
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input styling */
+input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Button styling */
+button {
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Sign-up link styling */
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signup-link p {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.signup-btn {
+    display: inline-block;
+    padding: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover, .close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
